@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     
     var placeHolderElements : [[String.Element]]? = [[String.Element]]()
     var placeHolderIndex = 0
-    var myCounter = 0
+    var elementCounter = 0
     var timer:Timer?
     
     
@@ -40,9 +40,9 @@ class ViewController: UIViewController {
     
     @objc func typeLetter(){
         if let element = placeHolderElements{
-            if myCounter < element[placeHolderIndex].count {
+            if elementCounter < element[placeHolderIndex].count {
                 
-                self.addPlaceholder(placeholder: (textField.placeholder ?? "") + String(element[placeHolderIndex][myCounter]))
+                self.addPlaceholder(placeholder: (textField.placeholder ?? "") + String(element[placeHolderIndex][elementCounter]))
                 timer?.invalidate()
                 timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(typeLetter), userInfo: nil, repeats: false)
             } else {
@@ -55,13 +55,13 @@ class ViewController: UIViewController {
                 timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(reset), userInfo: nil, repeats: true)
                 return
             }
-            myCounter += 1
+            elementCounter += 1
         }
     }
     
     @objc func reset(){
         timer?.invalidate()
-        self.myCounter = 0
+        self.elementCounter = 0
         self.fireTimer()
         self.textField.placeholder = initialText
     }
@@ -88,7 +88,7 @@ extension ViewController: UITextFieldDelegate{
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.text == ""{
-            myCounter = 0
+            elementCounter = 0
             placeHolderIndex = 0
             addPlaceholder(placeholder: initialText)
             fireTimer()
