@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     
     var initialText = "Search For "
     
-    var myText : [[String.Element]]? = [[String.Element]]()
+    var placeHolderElements : [[String.Element]]? = [[String.Element]]()
     var placeHolderIndex = 0
     var myCounter = 0
     var timer:Timer?
@@ -29,7 +29,7 @@ class ViewController: UIViewController {
         textField.delegate = self
         addPlaceholder(placeholder: initialText)
         for obj in placeHolderText{
-            myText?.append(Array(obj))
+            placeHolderElements?.append(Array(obj))
         }
         fireTimer()
     }
@@ -39,14 +39,14 @@ class ViewController: UIViewController {
     }
     
     @objc func typeLetter(){
-        if let element = myText{
+        if let element = placeHolderElements{
             if myCounter < element[placeHolderIndex].count {
                 
                 self.addPlaceholder(placeholder: (textField.placeholder ?? "") + String(element[placeHolderIndex][myCounter]))
                 timer?.invalidate()
                 timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(typeLetter), userInfo: nil, repeats: false)
             } else {
-                if placeHolderIndex == ((myText?.count ?? 0) - 1){
+                if placeHolderIndex == ((placeHolderElements?.count ?? 0) - 1){
                     placeHolderIndex = 0
                 }else{
                     placeHolderIndex += 1
