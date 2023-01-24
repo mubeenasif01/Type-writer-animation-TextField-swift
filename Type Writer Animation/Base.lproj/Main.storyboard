@@ -34,6 +34,9 @@
                             <constraint firstItem="YI7-PK-4Mc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="iop-H5-szu"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="textField" destination="YI7-PK-4Mc" id="DDZ-h8-fkB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
